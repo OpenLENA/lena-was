@@ -1,6 +1,6 @@
 
 
-# <img src="docs/images/readme_lena_was_head.png" width="800"> [![Build Web Application Server](https://github.com/ArchiSol/lena-was-oe/actions/workflows/build.yml/badge.svg)](https://github.com/ArchiSol/lena-was-oe/actions/workflows/build.yml)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ArchiSol_lena-was-oe&metric=alert_status&token=13de34a156939495270d3bef512b03eda0c179fe)](https://sonarcloud.io/dashboard?id=ArchiSol_lena-was-oe)  [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ArchiSol_lena-was-oe&metric=coverage&token=13de34a156939495270d3bef512b03eda0c179fe)](https://sonarcloud.io/dashboard?id=ArchiSol_lena-was-oe)
+# <img src="docs/images/readme_lena_was_head.png" width="800"> [![Build Web Application Server](https://github.com/OpenLENA/lena-was/actions/workflows/build.yml/badge.svg)](https://github.com/OpenLENA/lena-was/actions/workflows/build.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=coverage)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was)
 
 
 This is the home of the LENA Web Application Server.
