@@ -36,37 +36,41 @@ import org.apache.tomcat.jdbc.pool.XADataSource;
 
 import io.openlena.core.util.Encryptor;
 
-public class LenaDatasourceFactory extends DataSourceFactory{
-	
+/**
+ * encrypt datasource password
+ * 
+ * @author Erick Yu
+ */
+public class LenaDatasourceFactory extends DataSourceFactory {
+
 	private static final Log log = LogFactory.getLog(LenaDatasourceFactory.class);
-	 
-    private Encryptor encryptor = null;
- 
-    public LenaDatasourceFactory() {
-    	try {
+
+	private Encryptor encryptor = null;
+
+	public LenaDatasourceFactory() {
+		try {
 			encryptor = new Encryptor();
-		} catch (Exception e) {
-    	    // Do Nothing
 		}
-    }
- 
-    @Override
-    public DataSource createDataSource(Properties properties, Context context, boolean XA) throws InvalidKeyException,
-            IllegalBlockSizeException, BadPaddingException, SQLException, NoSuchAlgorithmException,
-            NoSuchPaddingException {
-        // Here we decrypt our password.
-        PoolConfiguration poolProperties = LenaDatasourceFactory.parsePoolProperties(properties);
-        poolProperties.setPassword(encryptor.decrypt(poolProperties.getPassword()));
- 
-        // The rest of the code is copied from Tomcat's DataSourceFactory.
-        if (poolProperties.getDataSourceJNDI() != null && poolProperties.getDataSource() == null) {
-            performJNDILookup(context, poolProperties);
-        }
-        org.apache.tomcat.jdbc.pool.DataSource dataSource = XA ? new XADataSource(poolProperties)
-                : new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
-        dataSource.createPool();
- 
-        return dataSource;
-    }
+		catch (Exception e) {
+			// Do Nothing
+		}
+	}
+
+	@Override
+	public DataSource createDataSource(Properties properties, Context context, boolean XA)
+			throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, SQLException, NoSuchAlgorithmException, NoSuchPaddingException {
+		// Here we decrypt our password.
+		PoolConfiguration poolProperties = LenaDatasourceFactory.parsePoolProperties(properties);
+		poolProperties.setPassword(encryptor.decrypt(poolProperties.getPassword()));
+
+		// The rest of the code is copied from Tomcat's DataSourceFactory.
+		if (poolProperties.getDataSourceJNDI() != null && poolProperties.getDataSource() == null) {
+			performJNDILookup(context, poolProperties);
+		}
+		org.apache.tomcat.jdbc.pool.DataSource dataSource = XA ? new XADataSource(poolProperties) : new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
+		dataSource.createPool();
+
+		return dataSource;
+	}
 
 }
