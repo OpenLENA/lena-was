@@ -10,6 +10,8 @@ All feature following will be working with CLI.
 
 The feature of LENA Open Edition : 
 
++ Core Engine : encrypt datasource password and servlet filter to disable secure attribute of session cookie when set-cookie.
+
 + Installation : Create, Delete and Clone server. Don't need to type in much things when create server, just required server name and service port.
   Clone server is so useful when you wanna save the status of the server right away.
  
@@ -56,7 +58,7 @@ Packaging module for installation files of LENA
 LENA will be released every each quarter. You can get [released files]() and check what is changed in [release note](https://github.com/OpenLENA/lena-was/wiki).
 
 ## Roadmap
-
+You can find a roadmap of LENA [here](https://github.com/OpenLENA/lena-was/wiki/2021-Roadmap).
 
 ## Community
 [LENA Community](https://groups.google.com/g/lena-oe)
