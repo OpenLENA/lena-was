@@ -1,0 +1,14 @@
+*.swp
+*.bck
+*.project
+/target/
+/was-dist/bin/*
+was-dist/target/
+was-dist/.settings/
+was-dist/.classpath
+was-core/target/
+was-core/.settings/
+was-core/.classpath
+.settings
+/.idea
+*.iml
