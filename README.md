@@ -34,7 +34,7 @@ If you are having some trouble with LENA? Contact us the way you want.
 
 ## Reporting Issues
 We use GitHub's integrated issue tracking system to record bugs and other issues. Following are recommendations to keep the rule for reporing issues.
-+ Check what the issue you found out is already ([recorded](https://github.com/OpenLENA/lena-was/issues) or not.
++ Check what the issue you found out is already [recorded](https://github.com/OpenLENA/lena-was/issues) or not.
 + If there is nothing, [Create issues](https://github.com/OpenLENA/lena-was/issues/new).
 + Keep the rule for commit message.
 + If possible, try to create a test-case.
@@ -55,7 +55,7 @@ It has packages including OSS for using LENA.
 Packaging module for installation files of LENA
 
 ## Release
-LENA will be released every each quarter. You can get [released files]() and check what is changed in [release note](https://github.com/OpenLENA/lena-was/wiki).
+LENA will be released every each quarter. You can get [released files](https://github.com/OpenLENA/lena-was/releases) and check what is changed in [release note](https://github.com/OpenLENA/lena-was/wiki).
 
 ## Roadmap
 You can find a roadmap of LENA [here](https://github.com/OpenLENA/lena-was/wiki/2021-Roadmap).
