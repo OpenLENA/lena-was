@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # set
-INSTALL_FILE_PATH=`ls ${LENA_HOME}/*.tar.gz`
+INSTALL_FILE_PATH=$(ls ${LENA_HOME}/*.tar.gz)
 
 # install jdk
-if `cat /etc/*-release | grep -q "Ubuntu"`; then
+if $(cat /etc/*-release | grep -q "Ubuntu"); then
   apt-get update
   apt-get install -y openjdk-8-jdk
   JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
@@ -23,23 +23,29 @@ rm -rf ${INSTALL_FILE_PATH}
 # Install lena-web
 ### create argument text file
 INSTALL_ARG_FILE=${LENA_HOME}/arg.txt
-echo ${JAVA_HOME} >> ${INSTALL_ARG_FILE}      # java home
-echo ${SERVER_NAME} >> ${INSTALL_ARG_FILE}    # server name
-echo ${SERVICE_PORT} >> ${INSTALL_ARG_FILE}   # service port
-echo "root" >> ${INSTALL_ARG_FILE}                # run user - use default, don't need to input
-echo "" >> ${INSTALL_ARG_FILE}                # Install root path - use default, don't need to input
-echo "" >> ${INSTALL_ARG_FILE}                # AJP address - use default, don't need to input
-echo "" >> ${INSTALL_ARG_FILE}                # log home - use default, don't need to input
-echo "" >> ${INSTALL_ARG_FILE}                # JVM route - use default, don't need to input
+echo ${JAVA_HOME} >>${INSTALL_ARG_FILE}    # java home
+echo ${SERVER_NAME} >>${INSTALL_ARG_FILE}  # server name
+echo ${SERVICE_PORT} >>${INSTALL_ARG_FILE} # service port
+echo "root" >>${INSTALL_ARG_FILE}          # run user - use default, don't need to input
+echo "" >>${INSTALL_ARG_FILE}              # Install root path - use default, don't need to input
+echo "" >>${INSTALL_ARG_FILE}              # AJP address - use default, don't need to input
+echo "" >>${INSTALL_ARG_FILE}              # log home - use default, don't need to input
+echo "" >>${INSTALL_ARG_FILE}              # JVM route - use default, don't need to input
 
 ### install
 cat ${INSTALL_ARG_FILE}
-/bin/bash ${LENA_HOME}/bin/lenactl.sh create lena-was < ${INSTALL_ARG_FILE}
+/bin/bash ${LENA_HOME}/bin/lenactl.sh create lena-was <${INSTALL_ARG_FILE}
+
+#Change root user enabled.
+LENA_SERVER_HOME=${LENA_HOME}/servers/${SERVER_NAME}
+echo "Change server.xml,start.sh to run as root user"
+sed -i "s/\"root\"/\"anonymous\"/g" ${LENA_SERVER_HOME}/start.sh
+sed -i "s/checkedOsUsers=\"root\"/checkedOsUsers=\"\"/g" ${LENA_SERVER_HOME}/conf/server.xml
 
 # create image build info
 IMAGE_BUILD_INFO_FILE=${LENA_HOME}/etc/info/image-build.info
-echo IMAGE BUILD TIME : `date` >> ${IMAGE_BUILD_INFO_FILE}
-echo JAVA_HOME : ${JAVA_HOME} >> ${IMAGE_BUILD_INFO_FILE}
-echo SERVER_NAME : ${SERVER_NAME} >> ${IMAGE_BUILD_INFO_FILE}
-echo SERVICE_PORT : ${SERVICE_PORT} >> ${IMAGE_BUILD_INFO_FILE}
-echo INSTALL_FILE_PATH : ${INSTALL_FILE_PATH} >> ${IMAGE_BUILD_INFO_FILE}
+echo IMAGE BUILD TIME : $(date) >>${IMAGE_BUILD_INFO_FILE}
+echo JAVA_HOME : ${JAVA_HOME} >>${IMAGE_BUILD_INFO_FILE}
+echo SERVER_NAME : ${SERVER_NAME} >>${IMAGE_BUILD_INFO_FILE}
+echo SERVICE_PORT : ${SERVICE_PORT} >>${IMAGE_BUILD_INFO_FILE}
+echo INSTALL_FILE_PATH : ${INSTALL_FILE_PATH} >>${IMAGE_BUILD_INFO_FILE}

@@ -8,10 +8,10 @@ SCRIPT=$SCRIPTPATH/$(basename $0)
 SETUSER=${WAS_USER}
 RUNNER=`whoami`
 
-#if [ ${RUNNER} = "root" ] ;
-#  then >&2 echo "Deny Access : [ ${RUNNER} ]." ;
-#  exit 1 ;
-#fi
+if [ ${RUNNER} = "root" ] ;
+  then >&2 echo "Deny Access : [ ${RUNNER} ]." ;
+  exit 1 ;
+fi
 
 if [ ${RUNNER} != ${SETUSER} ] ;
   then >&2 echo "Deny Access : [ ${RUNNER} ]. Not ${SETUSER}" ;
