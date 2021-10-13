@@ -23,7 +23,7 @@ jobs:
           servers: ${{secrets.GH_MVN_REPO_USER_INFO}}
       - name: Build with Maven
         run: mvn -P tomcat9 -B package --file was-dist/pom.xml
-      - uses: avides/actions-project-version-check@latest
+      - uses: avides/actions-project-version-check@v1.2.0
         id: actions_project_version_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
