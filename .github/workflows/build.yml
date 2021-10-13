@@ -27,7 +27,7 @@ jobs:
         id: actions_project_version_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          file-to-check: was-dist/pom.xml
+          file-to-check: pom.xml
       - uses: shallwefootball/s3-upload-action@master
         name: Upload S3
         id: S3
