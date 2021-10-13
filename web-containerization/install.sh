@@ -36,6 +36,8 @@ echo "" >>${INSTALL_ARG_FILE}              # JVM route - use default, don't need
 cat ${INSTALL_ARG_FILE}
 /bin/bash ${LENA_HOME}/bin/lenactl.sh create lena-was <${INSTALL_ARG_FILE}
 
+chmod -R 775 ${LENA_HOME}
+
 #Change root user enabled.
 LENA_SERVER_HOME=${LENA_HOME}/servers/${SERVER_NAME}
 echo "Change server.xml,start.sh to run as root user"
