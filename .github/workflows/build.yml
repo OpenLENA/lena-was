@@ -59,3 +59,43 @@ jobs:
             FROM_IMAGE=amazonlinux:2
           tags: |
             ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_amazonlinux2
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./web-containerization/Dockerfile
+          push: true
+          build-args: |
+            FROM_IMAGE=centos:8
+          tags: |
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos8
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./web-containerization/Dockerfile
+          push: true
+          build-args: |
+            FROM_IMAGE=centos:7
+          tags: |
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos7
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./web-containerization/Dockerfile
+          push: true
+          build-args: |
+            FROM_IMAGE=rockylinux/rockylinux:8.4
+          tags: |
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_rocky8
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./web-containerization/Dockerfile
+          push: true
+          build-args: |
+            FROM_IMAGE=ubuntu:18.04
+          tags: |
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_ubuntu18.04
