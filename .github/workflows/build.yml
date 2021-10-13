@@ -23,11 +23,10 @@ jobs:
           servers: ${{secrets.GH_MVN_REPO_USER_INFO}}
       - name: Build with Maven
         run: mvn -P tomcat9 -B package --file was-dist/pom.xml
-      - uses: avides/actions-project-version-check@v1.2.0
-        id: actions_project_version_check
+      - id: get-version
+        uses: JActions/maven-version@v1.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file-to-check: pom.xml
+          pom: ./pom.xml
       - uses: shallwefootball/s3-upload-action@master
         name: Upload S3
         id: S3
@@ -59,4 +58,4 @@ jobs:
           build-args: |
             FROM_IMAGE=amazonlinux:2
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.actions_project_version_check.outputs.version }}_amazonlinux2
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_amazonlinux2
