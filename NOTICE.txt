@@ -1,4 +1,4 @@
-LENA WAS
+LENA WAS Open Edition
 Copyright 2021 LENA Development Team.
 
 The LENA WAS project contains subcomponents with separate copyright notices and license terms.
