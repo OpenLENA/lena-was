@@ -26,7 +26,7 @@ INSTALL_ARG_FILE=${LENA_HOME}/arg.txt
 echo ${JAVA_HOME} >> ${INSTALL_ARG_FILE}      # java home
 echo ${SERVER_NAME} >> ${INSTALL_ARG_FILE}    # server name
 echo ${SERVICE_PORT} >> ${INSTALL_ARG_FILE}   # service port
-echo "" >> ${INSTALL_ARG_FILE}                # run user - use default, don't need to input
+echo "root" >> ${INSTALL_ARG_FILE}                # run user - use default, don't need to input
 echo "" >> ${INSTALL_ARG_FILE}                # Install root path - use default, don't need to input
 echo "" >> ${INSTALL_ARG_FILE}                # AJP address - use default, don't need to input
 echo "" >> ${INSTALL_ARG_FILE}                # log home - use default, don't need to input
