@@ -11,7 +11,7 @@ ENV SERVICE_PORT 8180
 # create LENA HOME
 RUN mkdir -p /usr/local/lena
 # copy LENA install files
-COPY was-dist/target/lena-work/*.tar.gz web-containerization/install.sh web-containerization/entrypoint.sh ${LENA_HOME}
+COPY was-dist/target/lena-work/*.tar.gz was-containerization/install.sh was-containerization/entrypoint.sh ${LENA_HOME}
 
 # Insall LENA
 RUN cd ${LENA_HOME} \
