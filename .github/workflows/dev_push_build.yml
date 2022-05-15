@@ -65,7 +65,7 @@ jobs:
           build-args: |
             FROM_IMAGE=amazonlinux:2
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
   centos7:
     name: ${{ github.job }}
     needs: build
@@ -80,7 +80,7 @@ jobs:
           build-args: |
             FROM_IMAGE=centos:7
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
   rocky8:
     name: ${{ github.job }}
     needs: build
@@ -95,7 +95,7 @@ jobs:
           build-args: |
             FROM_IMAGE=rockylinux/rockylinux:8.4
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
   ubuntu1804:
     name: ${{ github.job }}
     needs: build
@@ -110,4 +110,4 @@ jobs:
           build-args: |
             FROM_IMAGE=ubuntu:18.04
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
