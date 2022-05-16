@@ -100,7 +100,7 @@ jobs:
       datetime: ${{ env.datetime }}
   # test was for each os
   amazonlinux2:
-    name: test
+    name: [test] amazonlinux2
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -140,7 +140,7 @@ jobs:
           tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   centos7:
-    name: test
+    name: [test] centos7
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -180,7 +180,7 @@ jobs:
           tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   rocky8:
-    name: test
+    name: [test] rocky8
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -220,7 +220,7 @@ jobs:
           tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   ubuntu1804:
-    name: test
+    name: [test] ubuntu1804
     runs-on: ubuntu-latest
     needs: build
     steps:
