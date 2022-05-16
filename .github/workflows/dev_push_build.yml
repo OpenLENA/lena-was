@@ -1,8 +1,11 @@
-name: Build Web Application Server
+name: '[ Dev / PR ] Build LENA Web Application Server'
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  pull_request:
+    branches:
+      - 'master'
   push:
-    branches: [ master ]
+    branches:
+      - 'dev/**'
 jobs:
   build:
     name: Build
@@ -60,7 +63,7 @@ jobs:
           build-args: |
             FROM_IMAGE=amazonlinux:2
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_amazonlinux2
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_amazonlinux2_${{ env.datetime }}
       - name: Build and push centos7
         uses: docker/build-push-action@v2
         with:
@@ -70,7 +73,7 @@ jobs:
           build-args: |
             FROM_IMAGE=centos:7
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos7
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos7_${{ env.datetime }}
       - name: Build and push rocky8
         uses: docker/build-push-action@v2
         with:
@@ -80,7 +83,7 @@ jobs:
           build-args: |
             FROM_IMAGE=rockylinux/rockylinux:8.4
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_rocky8
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_rocky8_${{ env.datetime }}
       - name: Build and push ubuntu1804
         uses: docker/build-push-action@v2
         with:
@@ -90,7 +93,7 @@ jobs:
           build-args: |
             FROM_IMAGE=ubuntu:18.04
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_ubuntu1804
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_ubuntu1804_${{ env.datetime }}
     outputs:
       repository: ${{ steps.repository.outputs.lowercase }}
       version: ${{ steps.get-version.outputs.version }}
@@ -106,7 +109,7 @@ jobs:
         id: dockerRunAction
         uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
           shell: bash
           run: |
             echo "========================="
@@ -126,6 +129,15 @@ jobs:
         with:
           script: |
             core.setFailed('Command Failed [ ps.sh ]')
+      # Delete test image
+      - name: Delete image
+        if: always()
+        uses: bots-house/ghcr-delete-image-action@v1.0.1
+        with:
+          owner: openlena
+          name: lena-was
+          token: ${{ secrets.GH_PAT_FULL_ACCESS_AUTH }}
+          tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   centos7:
     name: "[test] centos7"
@@ -137,7 +149,7 @@ jobs:
         id: dockerRunAction
         uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
           shell: bash
           run: |
             echo "========================="
@@ -157,6 +169,15 @@ jobs:
         with:
           script: |
             core.setFailed('Command Failed [ ps.sh ]')
+      # Delete test image
+      - name: Delete image
+        if: always()
+        uses: bots-house/ghcr-delete-image-action@v1.0.1
+        with:
+          owner: openlena
+          name: lena-was
+          token: ${{ secrets.GH_PAT_FULL_ACCESS_AUTH }}
+          tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   rocky8:
     name: "[test] rocky8"
@@ -168,7 +189,7 @@ jobs:
         id: dockerRunAction
         uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
           shell: bash
           run: |
             echo "========================="
@@ -188,6 +209,15 @@ jobs:
         with:
           script: |
             core.setFailed('Command Failed [ ps.sh ]')
+      # Delete test image
+      - name: Delete image
+        if: always()
+        uses: bots-house/ghcr-delete-image-action@v1.0.1
+        with:
+          owner: openlena
+          name: lena-was
+          token: ${{ secrets.GH_PAT_FULL_ACCESS_AUTH }}
+          tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
   # test was for each os
   ubuntu1804:
     name: "[test] ubuntu1804"
@@ -199,7 +229,7 @@ jobs:
         id: dockerRunAction
         uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
           shell: bash
           run: |
             echo "========================="
@@ -219,3 +249,12 @@ jobs:
         with:
           script: |
             core.setFailed('Command Failed [ ps.sh ]')
+      # Delete test image
+      - name: Delete image
+        if: always()
+        uses: bots-house/ghcr-delete-image-action@v1.0.1
+        with:
+          owner: openlena
+          name: lena-was
+          token: ${{ secrets.GH_PAT_FULL_ACCESS_AUTH }}
+          tag: ${{ needs.build.outputs.version }}_${{ github.job }}_${{ needs.build.outputs.datetime }}
