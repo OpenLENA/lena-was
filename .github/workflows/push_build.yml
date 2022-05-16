@@ -47,8 +47,11 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ github.repository }}
+      # Set current date as env variable
+      - name: Set current date as env variable
+        run: echo "datetime=$(date +'%y%m%d%H%M%S')" >> $GITHUB_ENV
       # build docker container image and push to repository
-      - name: Build and push
+      - name: Build and push amazonlinux2
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -58,17 +61,7 @@ jobs:
             FROM_IMAGE=amazonlinux:2
           tags: |
             ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_amazonlinux2
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./was-containerization/Dockerfile
-          push: true
-          build-args: |
-            FROM_IMAGE=centos:8
-          tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos8
-      - name: Build and push
+      - name: Build and push centos7
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -78,7 +71,7 @@ jobs:
             FROM_IMAGE=centos:7
           tags: |
             ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_centos7
-      - name: Build and push
+      - name: Build and push rocky8
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -88,7 +81,7 @@ jobs:
             FROM_IMAGE=rockylinux/rockylinux:8.4
           tags: |
             ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_rocky8
-      - name: Build and push
+      - name: Build and push ubuntu1804
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -97,4 +90,132 @@ jobs:
           build-args: |
             FROM_IMAGE=ubuntu:18.04
           tags: |
-            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_ubuntu18.04
+            ghcr.io/${{ steps.repository.outputs.lowercase }}:${{ steps.get-version.outputs.version }}_ubuntu1804
+    outputs:
+      repository: ${{ steps.repository.outputs.lowercase }}
+      version: ${{ steps.get-version.outputs.version }}
+      datetime: ${{ env.datetime }}
+  # test was for each os
+  amazonlinux2:
+    name: "[test] amazonlinux2"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Run conatiner for simple test
+      - name: Docker Run Action
+        id: dockerRunAction
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          shell: bash
+          run: |
+            echo "========================="
+            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            if [ "$?" -eq "0" ] ; then
+              RESULT=SUCCESS
+            else
+              RESULT=FAIL
+            fi
+            echo '::set-output name=RESULT::'${RESULT}
+            echo "========================="
+      # Check server status
+      - name: PS script Result Check
+        if: ${{ steps.dockerRunAction.outputs.RESULT != 'SUCCESS' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Command Failed [ ps.sh ]')
+  # test was for each os
+  centos7:
+    name: "[test] centos7"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Run conatiner for simple test
+      - name: Docker Run Action
+        id: dockerRunAction
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          shell: bash
+          run: |
+            echo "========================="
+            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            if [ "$?" -eq "0" ] ; then
+              RESULT=SUCCESS
+            else
+              RESULT=FAIL
+            fi
+            echo '::set-output name=RESULT::'${RESULT}
+            echo "========================="
+      # Check server status
+      - name: PS script Result Check
+        if: ${{ steps.dockerRunAction.outputs.RESULT != 'SUCCESS' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Command Failed [ ps.sh ]')
+  # test was for each os
+  rocky8:
+    name: "[test] rocky8"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Run conatiner for simple test
+      - name: Docker Run Action
+        id: dockerRunAction
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          shell: bash
+          run: |
+            echo "========================="
+            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            if [ "$?" -eq "0" ] ; then
+              RESULT=SUCCESS
+            else
+              RESULT=FAIL
+            fi
+            echo '::set-output name=RESULT::'${RESULT}
+            echo "========================="
+      # Check server status
+      - name: PS script Result Check
+        if: ${{ steps.dockerRunAction.outputs.RESULT != 'SUCCESS' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Command Failed [ ps.sh ]')
+  # test was for each os
+  ubuntu1804:
+    name: "[test] ubuntu1804"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Run conatiner for simple test
+      - name: Docker Run Action
+        id: dockerRunAction
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
+          shell: bash
+          run: |
+            echo "========================="
+            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            if [ "$?" -eq "0" ] ; then
+              RESULT=SUCCESS
+            else
+              RESULT=FAIL
+            fi
+            echo '::set-output name=RESULT::'${RESULT}
+            echo "========================="
+      # Check server status
+      - name: PS script Result Check
+        if: ${{ steps.dockerRunAction.outputs.RESULT != 'SUCCESS' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Command Failed [ ps.sh ]')
