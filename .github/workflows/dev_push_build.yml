@@ -50,7 +50,10 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ github.repository }}
-      # build docker container image and push to repository
+    outputs:
+      repository: ${{ steps.repository.outputs.lowercase }}
+      version: ${{ steps.get-version.outputs.version }}
+  # build docker container image and push to repository
   amazonlinux2:
     name: ${{ github.job }}
     needs: build
@@ -65,7 +68,7 @@ jobs:
           build-args: |
             FROM_IMAGE=amazonlinux:2
           tags: |
-            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
   centos7:
     name: ${{ github.job }}
     needs: build
@@ -80,7 +83,7 @@ jobs:
           build-args: |
             FROM_IMAGE=centos:7
           tags: |
-            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
   rocky8:
     name: ${{ github.job }}
     needs: build
@@ -95,7 +98,7 @@ jobs:
           build-args: |
             FROM_IMAGE=rockylinux/rockylinux:8.4
           tags: |
-            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
   ubuntu1804:
     name: ${{ github.job }}
     needs: build
@@ -110,4 +113,4 @@ jobs:
           build-args: |
             FROM_IMAGE=ubuntu:18.04
           tags: |
-            ghcr.io/${{ needs.build.steps.repository.outputs.lowercase }}:${{ needs.build.steps.get-version.outputs.version }}_${{ github.job }}
+            ghcr.io/${{ needs.build.outputs.repository }}:${{ needs.build.outputs.version }}_${{ github.job }}
