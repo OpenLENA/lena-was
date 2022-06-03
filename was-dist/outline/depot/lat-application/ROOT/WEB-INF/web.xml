@@ -16,9 +16,9 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0" metadata-complete="true">
 
-	<display-name>Welcome to LENA</display-name>
+	<display-name>Welcome to LA:T</display-name>
 	<description>
-     Welcome to LENA
+     Welcome to LA:T
   </description>
 	<error-page>
 		<error-code>404</error-code>
