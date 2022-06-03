@@ -27,7 +27,7 @@
                 <java.version>1.8</java.version>
                 <tomcat.version>8.5.78</tomcat.version>
                 <tomcat.major.version>8.5</tomcat.major.version>
-                <sonar.projectKey>ATLENA_lena-tomcat</sonar.projectKey>
+                <sonar.projectKey>ATLENA_lat-tomcat</sonar.projectKey>
                 <sonar.moduleKey>${artifactId}</sonar.moduleKey>
                 <sonar.organization>atlena</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -47,7 +47,7 @@
                 <java.version>1.8</java.version>
                 <tomcat.version>9.0.62</tomcat.version>
                 <tomcat.major.version>9.0</tomcat.major.version>
-                <sonar.projectKey>ATLENA_lena-tomcat</sonar.projectKey>
+                <sonar.projectKey>ATLENA_lat-tomcat</sonar.projectKey>
                 <sonar.moduleKey>${artifactId}</sonar.moduleKey>
                 <sonar.organization>atlena</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
