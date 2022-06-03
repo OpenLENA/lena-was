@@ -551,7 +551,7 @@
     </filter>
 -->
 
-	<!-- LENA filter for filename url encoding -->
+	<!-- LA:T filter for filename url encoding -->
 <!--
 	<filter>
 		<filter-name>FileNameURLEncodeFilter</filter-name>
@@ -567,7 +567,7 @@
 	</filter>
 -->
 
-	<!-- LENA filter for removing secure flag in session cookie -->
+	<!-- LA:T filter for removing secure flag in session cookie -->
 <!--
 	<filter>
 		<filter-name>DisableSecureCookieFilter</filter-name>

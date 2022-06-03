@@ -20,7 +20,7 @@ jobs:
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v14
         with:
-          repositories: '[{ "id": "github", "url": "https://maven.pkg.github.com/openlena/*" }]'
+          repositories: '[{ "id": "github", "url": "https://maven.pkg.github.com/atlena/*" }]'
           servers: ${{secrets.GH_MVN_REPO_USER_INFO}}
       # packaging project
       - name: Build with Maven
@@ -110,8 +110,8 @@ jobs:
           shell: bash
           run: |
             echo "========================="
-            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
-            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
             if [ "$?" -eq "0" ] ; then
               RESULT=SUCCESS
             else
@@ -141,8 +141,8 @@ jobs:
           shell: bash
           run: |
             echo "========================="
-            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
-            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
             if [ "$?" -eq "0" ] ; then
               RESULT=SUCCESS
             else
@@ -172,8 +172,8 @@ jobs:
           shell: bash
           run: |
             echo "========================="
-            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
-            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
             if [ "$?" -eq "0" ] ; then
               RESULT=SUCCESS
             else
@@ -203,8 +203,8 @@ jobs:
           shell: bash
           run: |
             echo "========================="
-            ${LENA_HOME}/servers/${SERVER_NAME}/start.sh
-            ${LENA_HOME}/servers/${SERVER_NAME}/ps.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
+            ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
             if [ "$?" -eq "0" ] ; then
               RESULT=SUCCESS
             else

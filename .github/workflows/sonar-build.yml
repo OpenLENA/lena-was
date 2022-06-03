@@ -20,7 +20,7 @@ jobs:
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v14
         with:
-          repositories: '[{ "id": "github", "url": "https://maven.pkg.github.com/openlena/*" }]'
+          repositories: '[{ "id": "github", "url": "https://maven.pkg.github.com/atlena/*" }]'
           servers: ${{secrets.GH_MVN_REPO_USER_INFO}}
       - name: Cache SonarCloud packages
         uses: actions/cache@v1

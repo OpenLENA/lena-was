@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set
-INSTALL_FILE_PATH=$(ls ${LENA_HOME}/*.tar.gz)
+INSTALL_FILE_PATH=$(ls ${LAT_HOME}/*.tar.gz)
 
 # install jdk
 if $(cat /etc/*-release | grep -q "Ubuntu"); then
@@ -21,14 +21,14 @@ else
 fi
 
 # Extract install file
-tar -zxf ${INSTALL_FILE_PATH} -C ${LENA_HOME} --strip-components=1
+tar -zxf ${INSTALL_FILE_PATH} -C ${LAT_HOME} --strip-components=1
 
 # Clear install file
 rm -rf ${INSTALL_FILE_PATH}
 
-# Install lena-web
+# Install lat tomcat
 ### create argument text file
-INSTALL_ARG_FILE=${LENA_HOME}/arg.txt
+INSTALL_ARG_FILE=${LAT_HOME}/arg.txt
 echo ${JAVA_HOME} >>${INSTALL_ARG_FILE}    # java home
 echo ${SERVER_NAME} >>${INSTALL_ARG_FILE}  # server name
 echo ${SERVICE_PORT} >>${INSTALL_ARG_FILE} # service port
@@ -40,18 +40,18 @@ echo "" >>${INSTALL_ARG_FILE}              # JVM route - use default, don't need
 
 ### install
 cat ${INSTALL_ARG_FILE}
-/bin/bash ${LENA_HOME}/bin/lenactl.sh create lena-was <${INSTALL_ARG_FILE}
+/bin/bash ${LAT_HOME}/bin/latctl.sh create tomcat <${INSTALL_ARG_FILE}
 
-chmod -R 775 ${LENA_HOME}
+chmod -R 775 ${LAT_HOME}
 
 #Change root user enabled.
-LENA_SERVER_HOME=${LENA_HOME}/servers/${SERVER_NAME}
+LAT_SERVER_HOME=${LAT_HOME}/servers/${SERVER_NAME}
 echo "Change server.xml,start.sh to run as root user"
-sed -i "s/\"root\"/\"anonymous\"/g" ${LENA_SERVER_HOME}/start.sh
-sed -i "s/checkedOsUsers=\"root\"/checkedOsUsers=\"\"/g" ${LENA_SERVER_HOME}/conf/server.xml
+sed -i "s/\"root\"/\"anonymous\"/g" ${LAT_SERVER_HOME}/start.sh
+sed -i "s/checkedOsUsers=\"root\"/checkedOsUsers=\"\"/g" ${LAT_SERVER_HOME}/conf/server.xml
 
 # create image build info
-IMAGE_BUILD_INFO_FILE=${LENA_HOME}/etc/info/image-build.info
+IMAGE_BUILD_INFO_FILE=${LAT_HOME}/etc/info/image-build.info
 echo IMAGE BUILD TIME : $(date) >>${IMAGE_BUILD_INFO_FILE}
 echo JAVA_HOME : ${JAVA_HOME} >>${IMAGE_BUILD_INFO_FILE}
 echo SERVER_NAME : ${SERVER_NAME} >>${IMAGE_BUILD_INFO_FILE}

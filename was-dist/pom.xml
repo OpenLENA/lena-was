@@ -4,11 +4,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.openlena</groupId>
-        <artifactId>lena-was</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
+        <groupId>io.atlena</groupId>
+        <artifactId>tomcat</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
-    <groupId>io.openlena</groupId>
+    <groupId>io.atlena</groupId>
     <artifactId>was-dist</artifactId>
 
     <name>was-dist</name>
@@ -16,18 +16,18 @@
     <properties>
         <build.timestamp>${maven.build.timestamp}</build.timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format><!-- yyyyMMdd-HHmm -->
-        <lena-all-work.workDir>${project.build.directory}/lena-work</lena-all-work.workDir>
-        <lena-all-work.editionName>open-edition</lena-all-work.editionName>
-        <lena-all-work.finalName>lena-was-${lena-all-work.editionName}-${project.version}-linux
-        </lena-all-work.finalName>
-        <lena-all-work.outputDir>${lena-all-work.workDir}/${lena-all-work.finalName}</lena-all-work.outputDir>
+        <lat-all-work.workDir>${project.build.directory}/lat-work</lat-all-work.workDir>
+        <lat-all-work.editionName>open-edition</lat-all-work.editionName>
+        <lat-all-work.finalName>tomcat-${lat-all-work.editionName}-${project.version}-linux
+        </lat-all-work.finalName>
+        <lat-all-work.outputDir>${lat-all-work.workDir}/${lat-all-work.finalName}</lat-all-work.outputDir>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>io.openlena</groupId>
-            <artifactId>lena-ctl</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
+            <groupId>io.atlena</groupId>
+            <artifactId>lat-ctl</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
@@ -52,19 +52,19 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>lena-all-work</id>
+                        <id>lat-all-work</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/assemble/lena-linux-dist.xml</descriptor>
+                                <descriptor>src/assemble/lat-linux-dist.xml</descriptor>
                             </descriptors>
                             <tarLongFileMode>gnu</tarLongFileMode>
                             <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>${lena-all-work.workDir}</outputDirectory>
-                            <finalName>${lena-all-work.finalName}</finalName>
+                            <outputDirectory>${lat-all-work.workDir}</outputDirectory>
+                            <finalName>${lat-all-work.finalName}</finalName>
                         </configuration>
                     </execution>
                 </executions>

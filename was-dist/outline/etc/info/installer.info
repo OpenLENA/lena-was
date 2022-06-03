@@ -1,15 +1,15 @@
 # default install value
 installer.java.version=${java.version}
 
-lena-was.service-port.default=8080
-lena-was.run-user.default=lena
-lena-was.ajp-address.default=127.0.0.1
-lena-was.jvm-route.default=host1_8180
-lena-was.template.dirname=base
+lat-was.service-port.default=8080
+lat-was.run-user.default=lat
+lat-was.ajp-address.default=127.0.0.1
+lat-was.jvm-route.default=host1_8180
+lat-was.template.dirname=base
 
-lena-web.service-port.default=80
-lena-web.run-user.default=lenaw
-lena-web.template.dirname=base
+lat-web.service-port.default=80
+lat-web.run-user.default=latw
+lat-web.template.dirname=base
 
 # etc
 clone.exclude-dir-names=.classes,history,snapshot,logs,work

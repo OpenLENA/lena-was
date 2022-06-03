@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.openlena</groupId>
-    <artifactId>lena-was</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <groupId>io.atlena</groupId>
+    <artifactId>tomcat</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
 
-    <name>lena-was</name>
+    <name>tomcat</name>
     <url>http://maven.apache.org</url>
     <packaging>pom</packaging>
 
@@ -27,9 +27,9 @@
                 <java.version>1.8</java.version>
                 <tomcat.version>8.5.78</tomcat.version>
                 <tomcat.major.version>8.5</tomcat.major.version>
-                <sonar.projectKey>OpenLENA_lena-was</sonar.projectKey>
+                <sonar.projectKey>ATLENA_lena-tomcat</sonar.projectKey>
                 <sonar.moduleKey>${artifactId}</sonar.moduleKey>
-                <sonar.organization>openlena</sonar.organization>
+                <sonar.organization>atlena</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 <sonar.coverage.exclusions>**/filters/**/*</sonar.coverage.exclusions>
             </properties>
@@ -47,9 +47,9 @@
                 <java.version>1.8</java.version>
                 <tomcat.version>9.0.62</tomcat.version>
                 <tomcat.major.version>9.0</tomcat.major.version>
-                <sonar.projectKey>OpenLENA_lena-was</sonar.projectKey>
+                <sonar.projectKey>ATLENA_lena-tomcat</sonar.projectKey>
                 <sonar.moduleKey>${artifactId}</sonar.moduleKey>
-                <sonar.organization>openlena</sonar.organization>
+                <sonar.organization>atlena</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 <sonar.coverage.exclusions>**/filters/**/*</sonar.coverage.exclusions>
             </properties>

@@ -2,22 +2,22 @@
 ARG FROM_IMAGE=MustInputBuildArg
 FROM docker.io/${FROM_IMAGE}
 
-ENV LENA_HOME /usr/local/lena
+ENV LAT_HOME /usr/local/lat
 #ARG JDK_HOME=/usr/lib/jvm/java
 #ENV JAVA_HOME ${JDK_HOME}
 ENV SERVER_NAME appServer
 ENV SERVICE_PORT 8180
 
-# create LENA HOME
-RUN mkdir -p /usr/local/lena
+# create LAT HOME
+RUN mkdir -p /usr/local/lat
 # copy LENA install files
-COPY was-dist/target/lena-work/*.tar.gz was-containerization/install.sh was-containerization/entrypoint.sh ${LENA_HOME}
+COPY was-dist/target/lat-work/*.tar.gz was-containerization/install.sh was-containerization/entrypoint.sh ${LAT_HOME}
 
 # Insall LENA
-RUN cd ${LENA_HOME} \
+RUN cd ${LAT_HOME} \
 	&& chmod +x *.sh \
-	&& ${LENA_HOME}/install.sh \
-	&& rm -f ${LENA_HOME}/install.sh
+	&& ${LAT_HOME}/install.sh \
+	&& rm -f ${LAT_HOME}/install.sh
 
-WORKDIR $LENA_HOME
+WORKDIR $LAT_HOME
 CMD ["./entrypoint.sh"]

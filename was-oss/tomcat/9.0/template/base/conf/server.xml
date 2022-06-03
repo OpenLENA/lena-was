@@ -19,7 +19,7 @@
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
  -->
-<Server port="${port.shutdown}" shutdown="LENA_INSTANCE_SHUTDOWN">
+<Server port="${port.shutdown}" shutdown="LAT_INSTANCE_SHUTDOWN">
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
   -->
@@ -57,8 +57,8 @@
     <Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
         maxThreads="150" minSpareThreads="4"/>
     -->
-    <Executor name="httpThreadPool" namePrefix="lena-http-${port.http}-exec-" maxThreads="256" minSpareThreads="10" />
-    <Executor name="ajpThreadPool" namePrefix="lena-ajp-${port.ajp}-exec-" maxThreads="256" minSpareThreads="10" />
+    <Executor name="httpThreadPool" namePrefix="lat-http-${port.http}-exec-" maxThreads="256" minSpareThreads="10" />
+    <Executor name="ajpThreadPool" namePrefix="lat-ajp-${port.ajp}-exec-" maxThreads="256" minSpareThreads="10" />
 
 
     <!-- A "Connector" represents an endpoint by which requests are received

@@ -4,7 +4,7 @@
 RUNDIR=`dirname "$0"`
 SERVER_HOME=`cd $RUNDIR; pwd -P`
 SERVER_NAME=`echo $SERVER_HOME | awk -F/ '{print $NF}'`
-LENA_HOME=`cd "$SERVER_HOME/../.."; pwd -P`
+LAT_HOME=`cd "$SERVER_HOME/../.."; pwd -P`
 
 
 check_run_user() {
@@ -35,20 +35,20 @@ define_server_info() {
 	ENV_FILE=$SERVER_HOME/env.sh
 	check_env_sh
 
-	LENA_USER=`cat $ENV_FILE | egrep "WAS_USER|RUN_USER" | awk -F= '{print $2}'`
+	LAT_USER=`cat $ENV_FILE | egrep "WAS_USER|RUN_USER" | awk -F= '{print $2}'`
 	SERVICE_NAME=$SERVER_NAME
 }
 
 check_service_template() {
         if [ ! -e $TEMP_FILE ]; then
-                echo "ERROR : lena-service.template does not exist."
+                echo "ERROR : lat-service.template does not exist."
                 exit
         fi
 }
 
 create_service() {
-        TEMP_FILE=$LENA_HOME/etc/script/lena-service.template
-        NEW_FILE=$LENA_HOME/etc/script/$SERVICE_NAME.service
+        TEMP_FILE=$LAT_HOME/etc/script/lat-service.template
+        NEW_FILE=$LAT_HOME/etc/script/$SERVICE_NAME.service
         check_service_template
 
         DESCRIPTION=$SERVICE_NAME
@@ -59,7 +59,7 @@ create_service() {
         cp $TEMP_FILE $NEW_FILE
 
         sed -i "s:DSCRTEMPLATE:$DESCRIPTION:g" $NEW_FILE
-        sed -i "s:USERTEMPLATE:$LENA_USER:g" $NEW_FILE
+        sed -i "s:USERTEMPLATE:$LAT_USER:g" $NEW_FILE
         sed -i "s:EXECSTARTTEMPLATE:$EXECSTART:g" $NEW_FILE
         sed -i "s:EXECSTOPTEMPLATE:$EXECSTOP:g" $NEW_FILE
         sed -i "s:WORKDIRTEMPLATE:$WORKINGDIRECTORY:g" $NEW_FILE
