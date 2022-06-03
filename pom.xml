@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.atlena</groupId>
-    <artifactId>tomcat</artifactId>
+    <artifactId>lat-tomcat</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
-    <name>tomcat</name>
+    <name>lat-tomcat</name>
     <url>http://maven.apache.org</url>
     <packaging>pom</packaging>
 
