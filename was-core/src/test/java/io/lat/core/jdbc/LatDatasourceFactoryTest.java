@@ -11,7 +11,7 @@ public class LatDatasourceFactoryTest {
 
 	@Test
 	public void test() throws Exception {
-		LenaDatasourceFactory factory = new LenaDatasourceFactory();
+		LatDatasourceFactory factory = new LatDatasourceFactory();
 		Properties p = new Properties();
 		p.setProperty("password", "3bd33f13a5aa11ffd36f9405ed9ff850");
 		p.setProperty("url", "jdbc:tomcat:test");
