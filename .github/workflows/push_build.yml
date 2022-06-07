@@ -147,6 +147,9 @@ jobs:
             ls -al ${LAT_HOME}/bin
             echo "${LAT_HOME}/servers"
             ls -al ${LAT_HOME}/servers
+            echo "${LAT_HOME}/servers/appServer"
+            ls -al ${LAT_HOME}/servers/appServer
+            yum -y install tree
             tree ${LAT_HOME}
             ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
             ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
