@@ -31,7 +31,7 @@ jobs:
         uses: nnichols/maven-version-bump-action@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      # Upload install file to Github Artifact
+      # Upload install file to Github Artifacts
       - name: Upload install file to Github Artifact
         uses: actions/upload-artifact@v2
         with:
