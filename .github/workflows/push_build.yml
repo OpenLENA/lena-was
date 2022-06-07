@@ -141,6 +141,8 @@ jobs:
           shell: bash
           run: |
             echo "========================="
+            ls -al ${LAT_HOME}
+            tree ${LAT_HOME}
             ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
             ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
             if [ "$?" -eq "0" ] ; then
