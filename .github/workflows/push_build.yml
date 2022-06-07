@@ -141,7 +141,12 @@ jobs:
           shell: bash
           run: |
             echo "========================="
+            echo "${LAT_HOME}"
             ls -al ${LAT_HOME}
+            echo "${LAT_HOME}/bin"
+            ls -al ${LAT_HOME}/bin
+            echo "${LAT_HOME}/servers"
+            ls -al ${LAT_HOME}/servers
             tree ${LAT_HOME}
             ${LAT_HOME}/servers/${SERVER_NAME}/start.sh
             ${LAT_HOME}/servers/${SERVER_NAME}/ps.sh
