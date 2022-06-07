@@ -57,7 +57,7 @@ if(hasEnterpriseFeature()){
 		<div id="content">
     		<div id="intro">
 				<h2></h2>
-				<p>Congratulations! You have successfully setup and started LA:T Application Server.  You are ready to go!</p>
+				<p>Congratulations! You have successfully setup and started LA:T Tomcat Application Server.  You are ready to go!</p>
 			</div>
 
 			<div class="bodyrule"><hr></div>
