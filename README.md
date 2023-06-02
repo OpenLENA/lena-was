@@ -1,6 +1,6 @@
 
 
-# <img src="docs/images/readme_lena_was_head.png" width="800"> [![Build Web Application Server](https://github.com/OpenLENA/lena-was/actions/workflows/push_build.yml/badge.svg)](https://github.com/OpenLENA/lena-was/actions/workflows/push_build.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=coverage)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was)
+# <img src="docs/images/readme_lena_was_head.png" width="800"> [![Build Web Application Server](https://github.com/OpenLENA/lena-was/actions/workflows/push_build.yml/badge.svg?branch=master)](https://github.com/OpenLENA/lena-was/actions/workflows/push_build.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=OpenLENA_lena-was&metric=coverage)](https://sonarcloud.io/dashboard?id=OpenLENA_lena-was)
 
 
 This is the home of the LENA Web Application Server.
